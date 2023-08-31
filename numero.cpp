@@ -4,8 +4,21 @@
 using namespace std;
 
 int cifras(int x) {
+    int j=1;
+    int k=1;
+    int y=0;
+    
+    if (x==0) {
+        return 1;  
+    }
+    
+    while (x!= 0) {
+        x /= 10;
+        y++;
+    }
+    
+    return y;
 
-    return 0;
 }
 
 string unacifra(int x) {
@@ -48,15 +61,29 @@ string doscifras(int x) {
         if (x == 15)
             return "quince";
     }
-    else {
-        x = x / 10;
+
+    //bucle para ver cuantas veces 10 hay en el numero de 2 cifras
+    if(x>=16 || x<=19) {
+        x = x - 10;
         return "diez y " + unacifra(x);
     }
 }
 
 int main() {
 
-    doscifras(16);
+    //doscifras(16);
+
+    cout<<cifras(10)<<endl;
+
+    cout<<cifras(100)<<endl;
+
+    cout<<cifras(12)<<endl;
+
+    cout<<doscifras(12)<<endl;
+
+    cout<<unacifra(4)<<endl;
+
+    cout<<doscifras(18)<<endl;
 
     
 
