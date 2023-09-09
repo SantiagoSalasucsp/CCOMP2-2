@@ -33,4 +33,20 @@ int main(){
         cout<<*l<<" ";
     }
 
+    cout<<endl<<**A<<endl;
+    cout<<**(A+1)<<endl;
+    cout<<**(A+2)<<endl;
+
+    cout<<(*(*A+1))<<endl;
+    cout<<*(*(A+1)+1)<<endl;
+    cout<<"--------------"<<endl;
+    for(int*p=*A+2;p<*(A+3);p+=5){
+        cout<<*p<<endl;
+    }
+
+    cout<<"----------"<<endl;
+
+    for(int(*p)[5]=A;p<A+3;p++)
+        cout<<*(*p+1)<<endl;
+    
 }

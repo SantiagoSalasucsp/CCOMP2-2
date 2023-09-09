@@ -671,12 +671,32 @@ string seiscifras(int x){
 
     if(u==0)
         return trescifras(j)+" mil";
-    if(u>=100)
-        return trescifras(j) + "Mil" + trescifras(u);
-    if(u<=99 && u>=10)
-        return trescifras(j)+"Mil"+doscifras(u);
-    if(u<10 && u!=0)
-        return trescifras(j)+"mil"+unacifra(u);
+    if(u>=100){
+        if((j%10)%10==1){
+            j=j-1;
+            return trescifras(j)+" y un"+ " mil" +trescifras(u);
+        }
+        else 
+            return trescifras(j) + " Mil" + trescifras(u);
+    }
+    if(u<=99 && u>=10){
+        if((j%10)%10==1){
+            j=j-1;
+            return trescifras(j)+" y un"+ " mil" +doscifras(u);
+        }
+        else 
+            return trescifras(j) + " Mil" + doscifras(u);
+    }
+        
+    if(u<10 && u!=0){
+        if((j%10)%10==1){
+            j=j-1;
+            return trescifras(j)+" y un"+ " mil" +unacifra(u);
+        }
+        else 
+            return trescifras(j) + " Mil" + unacifra(u);
+    }
+        
 
 
 
@@ -718,8 +738,10 @@ int main() {
     cout<<seiscifras(101010)<<endl;
     cout<<seiscifras(201101)<<endl;
     cout<<seiscifras(111111)<<endl;
-    
 
+    cout<<seiscifras(100001)<<endl;
+    
+    cout<<seiscifras(171171)<<endl;
    
 
     
