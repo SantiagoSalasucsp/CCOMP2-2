@@ -717,6 +717,7 @@ int main() {
     cout<<trescifras(928)<<endl;*/
     cout<<seiscifras(101010)<<endl;
     cout<<seiscifras(201101)<<endl;
+    cout<<seiscifras(111111)<<endl;
     
 
    
