@@ -44,10 +44,6 @@ for(int l=0;l<10;l++){
 }
     coktail_sort(ini,fin);
 
-    cout<<endl;
-for(int l=0;l<10;l++){
-    cout<<A[l]<<" ";
-}
 cout<<endl;
     PrintPun(ini,fin);
 
