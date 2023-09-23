@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-void tra(int(*p)[4], int n){
-    
+void tra(int(*p)[4]){
+    int n=4;
     for(int*q=*p;n>0;q+=5){
         int c=n-1;
         
@@ -24,7 +24,7 @@ void tra(int(*p)[4], int n){
 int main(){
     int A[4][4]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 
-    tra(A,4);
+    tra(A);
 
     for(int (*p)[4]=A;p<A+4;p++){
         for(int*q=*p;q<*(p+1);q++){
