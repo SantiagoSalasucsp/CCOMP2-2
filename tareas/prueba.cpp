@@ -20,16 +20,6 @@ void traspuesta(int (*p)[4],int n)
 int main() {
     int A[4][4]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
     traspuesta(A,4);
-<<<<<<< HEAD
 
     //XD
-=======
-    for(int (*p)[4]=A;p<A+4;p++){
-        for(int*q=*p;q<*(p+1);q++){
-            cout<<*q<<" "; 
-        }
-        cout<<endl;
-    }
-    
->>>>>>> 21cdfe48af7abea20efee8996fbcf8dc2b9a5828
 }
