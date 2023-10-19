@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+
 using namespace std;
 
 struct nodo{
@@ -9,21 +9,35 @@ struct nodo{
     nodo*fin;
     nodo*ini;
     void push(nodo* ini,int a){
-        this->ini=ini;
+        if(cont==0)
+            this->ini=ini;
+
         for(int x=0;x<=cont;x++){
-           fin=this->ini; 
-           this->ini=this->fin;
+            if(cont==0){
+                fin=this->ini; 
+                this->ini=this->fin;
+            }
            fin->pun=new nodo;
         }
         cont++;
         fin->pun->valor=a;
         fin->pun->pun=nullptr;
+        fin=fin->pun;
+    }
+
+    void borrar(){
+        if(cont==0){
+            cout<<"estas en el primer elemento"<<endl;
+        }
+        else{
+            delete (fin->pun);
+        }
     }
 
 
 };
 
-struct nodo2{
+/*struct nodo2{
     int valor;
     nodo2* pun;
     nodo2* fin;
@@ -35,7 +49,7 @@ struct nodo2{
 
     }
 };
-
+*/
 
 int main(){
 
@@ -45,6 +59,8 @@ int main(){
 
     head->push(head,1);
     head->push(head,2);
+    head->push(head,3);
+    head->borrar();
     head->push(head,3);
 
 }
