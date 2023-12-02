@@ -181,18 +181,34 @@ void LEC<T,O>::add(T valor){
 template<class T, class O>
 void LEC<T,O>::del(T valor){
     
-    nodo<T>*pos,*tmp;
-    if(find(valor,pos)){
-        if(!pos){
-            tmp=head;
-            head=head->next;
-        }
-        else {
-            tmp=pos->next;
-            pos->next=pos->next->next;
-        }
-        delete tmp;
+/*   if(head== NULL){
+        return ;
     }
+    nodo<T>*tmp=head;
+    do{
+        
+     if(tmp->valor ==valor){
+        head->prev->next =head->next;
+        head->next->prev=head->prev;
+        head=head->next;
+        if(head== tmp){
+            delete tmp;
+            head =NULL;
+            return ;
+        }
+     }
+        if(tmp->next != NULL){
+            tmp->next->prev = tmp -> prev;
+        }
+        if ( tmp->prev != NULL){
+            tmp->prev->next= tmp->next;
+        }
+
+        delete tmp;
+        break;
+    
+
+    }*/
 }
 
 template<class T,class O>
@@ -236,21 +252,26 @@ template<class T, class O>
 void LEC<T,O>::josefos(int k) {
     nodo<T>*tmp1=head;
     while(tmp1){
-        for(int x=0;x<k;x++){
+        for(int x=1;x<k;x++){
             tmp1=tmp1->next;
         }
         if(tmp1==head){
+            nodo<T>*tmp2=tmp1;
             head=head->next;
             head->prev=tmp1->prev;
             tmp1->prev->next=head;
             cout<<"Ultimas palabras "<<tmp1->valor<<endl;
-            delete tmp1;
+            delete tmp2;
+            tmp1=tmp1->next;
+            continue;
         }
         else{
+            nodo<T>*tmp2=tmp1;
             tmp1->prev->next=tmp1->next;
             tmp1->next->prev=tmp1->prev;
             cout<<"Ultimas palabras "<<tmp1->valor<<endl;
-            delete tmp1;
+            delete tmp2;
+            tmp1=tmp1->next;
         }
         this->printder();
     }
@@ -287,6 +308,8 @@ int main(){
     h1.add(1);
     
     h1.printder();
+
+    h1.printizq();
 
     int k=3;
     h1.josefos(k);
