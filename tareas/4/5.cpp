@@ -62,6 +62,7 @@ class LEC{
         bool find(T valor, nodo<T>*&pos);
         void printder();
         void printizq();
+        void josefos(int k);
         ~LEC();
 };
 
@@ -69,11 +70,11 @@ class LEC{
 template<class T, class O>
 bool LEC<T,O>::find(T valor, nodo<T>*&pos){
     O op;
-    pos=NULL;
+    pos=head;
     nodo<T>*p=head;
     //for(; p && p->next!=head && op(p->valor,valor) && p!=p->next;pos=p,p=p->next);
 
-    while(p && (p->next!=head) && op(p->valor,valor)){
+    while(p && (p->next!=head) && !op(p->valor,valor)){
         pos=p;
         p=p->next;
     }
@@ -106,6 +107,8 @@ void LEC<T,O>::add(T valor){
         head->prev=head;
         //break;
     }
+
+    
   
     if(!find(valor,pos)){
     for(int x=0;x<=1;x++){
@@ -124,13 +127,24 @@ void LEC<T,O>::add(T valor){
             tmp1->prev=head;
         }*/
 
-        if(pos==head){
+
+        while(!op(pos->valor,valor) && pos->next!=head){
+            pos->prev=new nodo<T>(pos->prev->next,pos->prev,valor);
+            //break;
+        }
+
+        if(pos->valor==head->valor){
             nodo<T>* tmp1=head;
             head=new nodo<T>(head,head->prev,valor);
             tmp1->prev=head;
             head->prev->next=head;
             break;
         }
+
+        /*while(!op(pos->valor,valor)){
+            pos->prev=new nodo<T>(pos->prev->next,pos->prev,valor);
+            //break;
+        }*/
 
 
 
@@ -218,7 +232,29 @@ LEC<T,O>::~LEC(){
 
 }
 
-
+template<class T, class O>
+void LEC<T,O>::josefos(int k) {
+    nodo<T>*tmp1=head;
+    while(tmp1){
+        for(int x=0;x<k;x++){
+            tmp1=tmp1->next;
+        }
+        if(tmp1==head){
+            head=head->next;
+            head->prev=tmp1->prev;
+            tmp1->prev->next=head;
+            cout<<"Ultimas palabras "<<tmp1->valor<<endl;
+            delete tmp1;
+        }
+        else{
+            tmp1->prev->next=tmp1->next;
+            tmp1->next->prev=tmp1->prev;
+            cout<<"Ultimas palabras "<<tmp1->valor<<endl;
+            delete tmp1;
+        }
+        this->printder();
+    }
+}
 
 
 
@@ -228,19 +264,7 @@ int main(){
 
     LEC<int,des<int>> h1;
     
-    h1.add(1);
-    h1.printder();
-    cout<<endl;
-
-    h1.add(2);
-    h1.printder();
-    cout<<endl;
-
-    h1.add(3);
-    h1.printder();
-    cout<<endl;
-
-    h1.add(4);
+    h1.add(6);
     h1.printder();
     cout<<endl;
 
@@ -248,7 +272,22 @@ int main(){
     h1.printder();
     cout<<endl;
 
-    h1.add(6);
+    h1.add(4);
+    h1.printder();
+    cout<<endl;
+
+    h1.add(3);
+    h1.printder();
+    cout<<endl;
+
+    h1.add(2);
+    h1.printder();
+    cout<<endl;
+
+    h1.add(1);
     
     h1.printder();
+
+    int k=3;
+    h1.josefos(k);
 }
